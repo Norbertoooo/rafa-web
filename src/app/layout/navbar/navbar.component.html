@@ -1,0 +1,7 @@
+<nav class="navbar navbar-dark bg-primary justify-content-between">
+  <a class="navbar-brand" routerLink="/">Rafa - Web</a>
+  <div class="form-inline">
+    <button [hidden]="estaLogado()" class="btn btn-danger my-2 my-sm-0" type="submit" (click)="logout()">Logout</button>
+  </div>
+
+</nav>

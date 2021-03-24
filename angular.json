@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "rafa-web"
+    }
+  },
+  "defaultProject": "rafa-web",
+  "cli": {
+    "analytics": "242fe401-535f-4623-909d-569d4f5d2c7c"
+  }
 }

@@ -1,0 +1,24 @@
+<div class="container-fluid mt-2">
+  <app-dados-terapeuta></app-dados-terapeuta>
+  <div class="card shadow">
+    <div class="card-header">
+      <div class="card-title">
+        <h4 (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed">Pacientes</h4>
+      </div>
+    </div>
+    <div class="card" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div class="card-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate eros sed tortor aliquet, eget porttitor lacus ullamcorper. Donec tempus sed diam ut dapibus. Quisque lobortis viverra massa at lobortis. Nullam sit amet tortor diam. Praesent consectetur dui eget orci dictum, sit amet vulputate diam mattis. Donec non turpis eu erat gravida aliquam eget et massa. Quisque a vestibulum sapien.
+
+          Aenean suscipit leo at ex posuere accumsan. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce mattis est ligula, eu iaculis orci venenatis vel. Donec bibendum elementum placerat. Suspendisse sed dignissim odio, gravida scelerisque risus. Etiam rutrum dictum lacus, ac venenatis leo pulvinar in. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed lectus turpis, sodales id urna sit amet, congue vulputate elit. Ut commodo interdum diam id tincidunt. Proin commodo arcu eget convallis suscipit.
+
+          Nunc elementum ut justo non iaculis. Donec ac sem quis enim lobortis porta. Suspendisse nec diam quis lacus interdum hendrerit. Mauris molestie ut mi non aliquet. Etiam a risus accumsan, cursus orci quis, porta augue. Nullam facilisis mattis mauris, quis venenatis nulla consequat in. Mauris sed ultrices nibh. Sed sit amet luctus augue. Nullam vel nulla elit. Nullam nulla massa, sagittis non laoreet et, condimentum ut augue. Sed ac tortor id nunc porttitor volutpat at a purus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam at porttitor quam, in interdum dolor.
+
+          Pellentesque quis felis ligula. Fusce in pulvinar neque. Aliquam erat volutpat. Vivamus eget blandit felis, id condimentum tortor. Morbi massa dolor, convallis ut molestie et, suscipit eget ante. Nam auctor mi at urna auctor, placerat commodo lectus volutpat. Aliquam nisi odio, convallis et dapibus eu, fermentum in urna. Maecenas lectus diam, aliquam ut purus et, imperdiet fringilla diam. Morbi lacinia nulla ut facilisis posuere. Maecenas quis consequat velit. Duis condimentum lectus dolor, a mollis risus auctor non. Duis sodales, lorem ut aliquam fringilla, enim nisi lacinia est, vel porta felis mauris vel ligula. Mauris vulputate vehicula congue.
+
+          Morbi ut sodales dui. Ut ornare ante massa, cursus imperdiet lorem consectetur ut. Sed ut eros quis dui pharetra scelerisque vitae nec lectus. Fusce blandit ornare libero quis laoreet. Curabitur auctor quis diam eget laoreet. Suspendisse in tellus sit amet lorem aliquet fringilla non a felis. Nunc vel lacinia nunc. Nam efficitur, ipsum in varius accumsan, est nunc pharetra elit, a lacinia augue ante vel nisl. In felis lectus, porta a purus eget, bibendum tempus est. Aliquam hendrerit est at porttitor sagittis. Sed tristique dui ut eros vulputate, quis molestie ante placerat. In iaculis risus sed nunc tempus pretium. Etiam vel cursus purus.</p>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>

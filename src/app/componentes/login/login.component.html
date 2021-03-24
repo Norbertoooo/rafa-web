@@ -1,0 +1,37 @@
+<div class="container" style="width: 22rem; padding-top: 8%">
+
+  <div class="card shadow">
+    <div class="card-header text-center login">
+      <h5>Bem vindo(a), <br>A plataforma web da RAFA</h5>
+    </div>
+    <div class="card-body">
+      <form #formLogin="ngForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" #email="ngModel"
+                 placeholder="Email" name="email" [(ngModel)]="login.email" required>
+          <div *ngIf="!email.valid && email.touched" class="alert alert-danger pt-0 pb-0 text-center">
+            <span>Email obrigatório</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" class="form-control" id="senha" [(ngModel)]="login.senha"
+                 placeholder="Senha" name="senha" #senha="ngModel" autocomplete="password" required>
+          <div *ngIf="!senha.valid && senha.touched" class="alert alert-danger pt-0 pb-0 text-center">
+            <span>Senha obrigatória</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button type="submit" class="btn btn-primary" routerLink="/registrar">Registrar</button>
+          </div>
+          <div class="col text-right">
+            <button type="submit" class="btn btn-primary" [disabled]="!formLogin.valid" (click)="efetuarLogin()">Login</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
