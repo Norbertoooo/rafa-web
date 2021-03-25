@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {TerapeutaService} from '../../service/terapeuta.service';
-import {Terapeuta} from '../../model/terapeuta.model';
+import {TerapeutaService} from '../../services/terapeuta.service';
+import {Terapeuta} from '../../models/terapeuta.model';
 
 @Component({
   selector: 'app-dados-terapeuta',
@@ -11,7 +11,7 @@ export class DadosTerapeutaComponent implements OnInit {
 
   terapeuta = new Terapeuta();
   estaBloqueado = true;
-  isCollapsed = true;
+  isCollapsed = false;
 
   constructor(private terapeutaService: TerapeutaService) {
   }

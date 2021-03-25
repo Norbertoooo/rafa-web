@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Login} from './login.model';
-import {LoginService} from '../../service/login.service';
+import {LoginService} from '../../services/login.service';
 import {SessionStorageService} from 'ngx-webstorage';
 import {Router} from '@angular/router';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {AlertService} from '../../service/alert.service';
+import {AlertService} from '../../services/alert.service';
 
 @Component({
   selector: 'app-login',

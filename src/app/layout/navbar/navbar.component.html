@@ -1,7 +1,14 @@
 <nav class="navbar navbar-dark bg-primary justify-content-between">
   <a class="navbar-brand" routerLink="/">Rafa - Web</a>
   <div class="form-inline">
-    <button [hidden]="estaLogado()" class="btn btn-danger my-2 my-sm-0" type="submit" (click)="logout()">Logout</button>
+    <button [hidden]="estaLogado()" class="btn btn-light my-2 my-sm-0 mr-3" type="submit" (click)="navegarParaDashboard()">
+      <fa-icon class="mr-2" icon="book-open"></fa-icon>
+      <span>Dashboard</span>
+    </button>
+    <button [hidden]="estaLogado()" class="btn btn-danger my-2 my-sm-0" type="submit" (click)="logout()">
+      <fa-icon class="mr-2" icon="sign-out-alt"></fa-icon>
+      <span>Logout</span>
+    </button>
   </div>
 
 </nav>

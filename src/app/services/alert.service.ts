@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {AlertComponent} from '../componentes/alert/alert.component';
+import {AlertComponent} from '../layout/alert/alert.component';
 
 @Injectable()
 export class AlertService {

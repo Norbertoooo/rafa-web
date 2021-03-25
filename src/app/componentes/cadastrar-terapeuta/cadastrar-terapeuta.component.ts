@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Terapeuta} from '../../model/terapeuta.model';
-import {CadastrarTerapeutaService} from '../../service/cadastrar-terapeuta.service';
+import {Terapeuta} from '../../models/terapeuta.model';
+import {CadastrarTerapeutaService} from '../../services/cadastrar-terapeuta.service';
 import {formatDate} from '@angular/common';
 import {Router} from '@angular/router';
-import {AlertService} from '../../service/alert.service';
+import {AlertService} from '../../services/alert.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
 @Component({

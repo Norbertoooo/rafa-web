@@ -9,7 +9,8 @@ const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'registrar', component: CadastrarTerapeutaComponent},
   {path: 'dashboard-terapeuta', component: DashboardTerapeutaComponent},
-  {path: 'dashboard-responsavel', component: DashboardResponsavelComponent}
+  {path: 'dashboard-responsavel', component: DashboardResponsavelComponent},
+  {path: '**', component: LoginComponent}
 ];
 
 @NgModule({

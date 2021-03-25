@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SessionStorageService} from 'ngx-webstorage';
 import {Router} from '@angular/router';
+import {LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,19 +10,25 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private sessionStorageService: SessionStorageService, private router: Router) {
+  usuarioLogado: any;
+  constructor(private sessionStorageService: SessionStorageService, private router: Router, private loginService: LoginService ) {
   }
 
   ngOnInit(): void {
   }
 
   estaLogado(): boolean {
-    const usuarioLogado = this.sessionStorageService.retrieve('usuario-logado');
-    return usuarioLogado === null;
+    this.usuarioLogado = this.sessionStorageService.retrieve('usuario-logado');
+    return this.usuarioLogado === null;
+  }
+
+  navegarParaDashboard(): void {
+    if (this.usuarioLogado.perfil === 'TERAPEUTA') {
+      this.router.navigateByUrl('/dashboard-terapeuta').then();
+    }
   }
 
   logout(): void {
-    this.router.navigateByUrl('/').finally(() => this.sessionStorageService.clear('usuario-logado')
-    );
+    this.loginService.logout();
   }
 }
