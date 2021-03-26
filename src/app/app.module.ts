@@ -30,6 +30,7 @@ import { ListFilterPipe } from './pipes/list-filter.pipe';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
+import { AdicionarPacienteModalComponent } from './componentes/dashboard-terapeuta/adicionar-paciente-modal/adicionar-paciente-modal.component';
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -47,7 +48,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     LoginComponent,
     CadastrarTerapeutaComponent,
     AlertComponent,
-    ListFilterPipe
+    ListFilterPipe,
+    AdicionarPacienteModalComponent
   ],
   imports: [
     BrowserModule,

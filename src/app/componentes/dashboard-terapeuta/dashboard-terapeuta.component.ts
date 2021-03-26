@@ -6,6 +6,9 @@ import {PacienteService} from '../../services/paciente.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {map, startWith} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AdicionarPacienteModalComponent} from './adicionar-paciente-modal/adicionar-paciente-modal.component';
+import {RelatorioService} from '../../services/relatorio.service';
 
 @Component({
   selector: 'app-dashboard-terapeuta',
@@ -18,21 +21,16 @@ export class DashboardTerapeutaComponent implements OnInit {
   pacientes$: Observable<Paciente[]>;
   filtro = new FormControl('');
   pacientes: Paciente[] = [];
-  total$: any;
-  service: any;
-  private collectionSize: any;
+  paginaAtual = 1;
+  tamanhoPagina = 5;
+  totalItens: any;
 
-  constructor(private pacienteService: PacienteService, private alertService: AlertService) {
+  constructor(private pacienteService: PacienteService, private alertService: AlertService,
+              private ngbModalService: NgbModal, private relatorioService: RelatorioService) {
   }
 
   ngOnInit(): void {
-    this.pacienteService.buscarPacientesDeUmTerapeuta().subscribe((resposta) => {
-      this.pacientes = resposta.content;
-      this.collectionSize = this.pacientes.length;
-      this.pacientes$ = of(this.pacientes);
-    }, (error: HttpErrorResponse) => {
-      this.alertService.exibirErro(error.error.mensagem);
-    });
+    this.buscarPacientes();
 
     this.filtro.valueChanges.pipe(
       startWith(''),
@@ -40,7 +38,14 @@ export class DashboardTerapeutaComponent implements OnInit {
     );
   }
 
-  onSort($event: any): void {
+  buscarPacientes(): void {
+    this.pacienteService.buscarPacientesDeUmTerapeuta().subscribe((resposta) => {
+      this.pacientes = resposta;
+      this.totalItens = this.pacientes.length;
+      this.pacientes$ = of(this.pacientes);
+    }, (error: HttpErrorResponse) => {
+      this.alertService.exibirErro(error.error.mensagem);
+    });
   }
 
   procurar(text: string): Observable<Paciente[]> {
@@ -50,12 +55,17 @@ export class DashboardTerapeutaComponent implements OnInit {
     }));
   }
 
-  search(value: string): void {
-    this.pacientes = this.pacientes.filter((val) => val.nomeCompleto.toLowerCase().includes(value));
-    this.collectionSize = this.pacientes.length;
+  adicionarPaciente(): void {
+    const modalRef = this.ngbModalService.open(AdicionarPacienteModalComponent);
   }
 
-  adicionarPaciente(): void {
+  emitirRelatorio(): void{
+    this.relatorioService.buscarRelatorio().subscribe(resposta => this.exibirArquivo(resposta));
+  }
 
+  exibirArquivo(data: any): void{
+    const blob = new Blob([data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
+    window.open(url);
   }
 }
