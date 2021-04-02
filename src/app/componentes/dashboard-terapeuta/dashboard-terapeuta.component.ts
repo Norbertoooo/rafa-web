@@ -9,6 +9,8 @@ import {FormControl} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AdicionarPacienteModalComponent} from './adicionar-paciente-modal/adicionar-paciente-modal.component';
 import {RelatorioService} from '../../services/relatorio.service';
+import {VisualizarResponsavelModalComponent} from './visualizar-responsavel-modal/visualizar-responsavel-modal.component';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard-terapeuta',
@@ -25,7 +27,7 @@ export class DashboardTerapeutaComponent implements OnInit {
   tamanhoPagina = 5;
   totalItens: any;
 
-  constructor(private pacienteService: PacienteService, private alertService: AlertService,
+  constructor(private pacienteService: PacienteService, private alertService: AlertService, private spinnerService: NgxSpinnerService,
               private ngbModalService: NgbModal, private relatorioService: RelatorioService) {
   }
 
@@ -56,15 +58,30 @@ export class DashboardTerapeutaComponent implements OnInit {
   }
 
   adicionarPaciente(): void {
-    const modalRef = this.ngbModalService.open(AdicionarPacienteModalComponent);
+    const modalRef = this.ngbModalService.open(AdicionarPacienteModalComponent, {size: 'lg'});
+    modalRef.componentInstance.sucesso.subscribe( (resposta) => {
+      if (resposta) {
+        this.buscarPacientes();
+      }
+    });
   }
 
-  emitirRelatorio(): void{
-    this.relatorioService.buscarRelatorio().subscribe(resposta => this.exibirArquivo(resposta));
+  visualizarResponsavel(paciente): void {
+    const modalRef = this.ngbModalService.open(VisualizarResponsavelModalComponent, {size: 'lg'});
+    modalRef.componentInstance.pacienteId = paciente.id;
+    modalRef.componentInstance.responsaveis = paciente.responsaveis;
   }
 
-  exibirArquivo(data: any): void{
-    const blob = new Blob([data], { type: 'application/pdf' });
+  emitirRelatorio(): void {
+    this.spinnerService.show();
+    this.relatorioService.buscarRelatorio().subscribe(resposta => {
+      this.exibirArquivo(resposta);
+      this.spinnerService.hide();
+    });
+  }
+
+  exibirArquivo(data: any): void {
+    const blob = new Blob([data], {type: 'application/pdf'});
     const url = window.URL.createObjectURL(blob);
     window.open(url);
   }

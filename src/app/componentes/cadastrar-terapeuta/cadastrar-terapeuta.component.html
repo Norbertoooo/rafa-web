@@ -86,12 +86,11 @@
           <div class="form-group col-md-4">
             <label for="estado">Estado</label>
             <select id="estado" class="form-control" name="estado" required [(ngModel)]="terapeuta.endereco.estado">
-              <option selected>Choose...</option>
-              <option>...</option>
+              <option *ngFor="let estado of estados" [ngValue]="estado">{{estado}}</option>
             </select>
           </div>
           <div class="form-group col-md-3">
-            <label for="cep">Cep</label>
+            <label for="cep">CEP</label>
             <input type="number" class="form-control" id="cep" name="cep"
                    required [(ngModel)]="terapeuta.endereco.cep">
           </div>

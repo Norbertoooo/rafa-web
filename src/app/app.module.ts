@@ -31,6 +31,11 @@ import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import { AdicionarPacienteModalComponent } from './componentes/dashboard-terapeuta/adicionar-paciente-modal/adicionar-paciente-modal.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { VisualizarResponsavelModalComponent } from './componentes/dashboard-terapeuta/visualizar-responsavel-modal/visualizar-responsavel-modal.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -49,7 +54,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     CadastrarTerapeutaComponent,
     AlertComponent,
     ListFilterPipe,
-    AdicionarPacienteModalComponent
+    AdicionarPacienteModalComponent,
+    VisualizarResponsavelModalComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +66,10 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     NgxWebstorageModule.forRoot(),
     NgxMaskModule.forRoot(),
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AlertService,

@@ -4,22 +4,24 @@
     <div class="row">
 
       <div class="col">
-        <h4>Informações</h4>
+        <h4>Dados do Terapeuta</h4>
       </div>
 
       <div class="col text-right">
-        <button type=button class="btn btn-link mr-3 text-center" (click)="collapse.toggle()"
+        <button type=button class="btn btn-link mr-2" (click)="collapse.toggle()"
                 [attr.aria-expanded]="!isCollapsed">
-          <span *ngIf="isCollapsed"><i class="fa fa-eye tamanho-icone"></i></span>
-          <span *ngIf="!isCollapsed"><i class="fa fa-eye-slash tamanho-icone"></i></span>
+            <fa-icon *ngIf="isCollapsed" icon="eye"></fa-icon>
+            <fa-icon *ngIf="!isCollapsed" icon="eye-slash"></fa-icon>
         </button>
         <button type=submit class="btn btn-primary mr-3" (click)="editarTerapeuta()">
-          <span><i class="fa fa-edit mr-2"></i> Editar Informações </span>
+          <fa-icon icon="edit" class="mr-2"></fa-icon>
+          <span>Editar Informações</span>
         </button>
-        <button [disabled]="terapeutaForm.form.pristine" type=submit class="btn btn-primary"
+        <!-- <button [disabled]="terapeutaForm.form.pristine" type=submit class="btn btn-primary"
                 (click)="salvarAlteracoes(); terapeutaForm.form.reset()">
           <span><i class="fa fa-save mr-2"></i> Salvar Alterações</span>
         </button>
+       -->
       </div>
 
     </div>

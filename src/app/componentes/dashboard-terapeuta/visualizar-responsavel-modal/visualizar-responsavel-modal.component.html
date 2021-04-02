@@ -1,0 +1,85 @@
+<div class="modal-header">
+  <h4 class="modal-title">Visualizar Responsáveis</h4>
+</div>
+<div class="modal-body">
+  <div class="form-inline">
+    <label class="col-form-label mr-2" for="responsavelSelecionado">
+      Selecione o responsável:
+    </label>
+    <select id="responsavelSelecionado" class="form-control mb-2" [(ngModel)]="responsavelSelecionado">
+      <option *ngFor="let responsavel of responsaveis" [ngValue]="responsavel"> {{responsavel.nomeCompleto}}</option>
+    </select>
+  </div>
+  <form *ngIf="responsavelSelecionado">
+    <div class="form-row">
+      <div class="form-group col-md-7">
+        <label for="nomeCompletoResponsavel">Nome Completo</label>
+        <input type="text" class="form-control" id="nomeCompletoResponsavel"
+               value="{{responsavelSelecionado?.nomeCompleto}}" readonly>
+      </div>
+      <div class="form-group col-md-5">
+        <label for="dataNascimentoResponsavel">Data de Nascimento</label>
+        <input type="text" class="form-control" id="dataNascimentoResponsavel" readonly
+               value="{{responsavelSelecionado.dataNascimento}}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-7">
+        <label for="Telefone">Telefone</label>
+        <input type="text" class="form-control" id="Telefone" readonly value="{{responsavelSelecionado.telefone}}">
+      </div>
+      <div class="form-group col-md-5">
+        <label for="parentesco">Parentesco</label>
+        <input type="text" class="form-control" id="parentesco" readonly value="{{responsavelSelecionado.parentesco}}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-7">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" readonly value="{{responsavelSelecionado.login.email}}">
+      </div>
+      <div class="form-group col-md-5">
+        <label for="cpf">CPF</label>
+        <input type="text" class="form-control" id="cpf" readonly value="{{responsavelSelecionado.cpf}}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label for="rua">Rua</label>
+        <input type="text" class="form-control" id="rua" readonly name="rua" value="{{responsavelSelecionado.endereco.rua}}">
+      </div>
+      <div class="form-group col-md-5">
+        <label for="bairro">Bairro</label>
+        <input type="text" class="form-control" id="bairro" name="bairro" readonly value="{{responsavelSelecionado.endereco.bairro}}">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="numero">Número</label>
+        <input type="number" class="form-control" id="numero" name="numero" readonly value="{{responsavelSelecionado.endereco.numero}}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <label for="cidade">Cidade</label>
+        <input type="text" class="form-control" id="cidade" name="cidade" readonly value="{{responsavelSelecionado.endereco.cidade}}">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="estado">Estado</label>
+        <input id="estado" class="form-control" name="estado" readonly value="{{responsavelSelecionado.endereco.estado}}">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="cep">CEP</label>
+        <input type="number" class="form-control" id="cep" name="cep" readonly value="{{responsavelSelecionado.endereco.cep}}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="complemento">Complemento</label>
+      <textarea class="form-control" id="complemento" name="complemento" readonly value="{{responsavelSelecionado.endereco.complemento}}"></textarea>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-danger" (click)="cancelar()">
+    <fa-icon class="mr-2" icon="times"></fa-icon>
+    <span>Fechar</span>
+  </button>
+</div>

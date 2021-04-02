@@ -14,4 +14,8 @@ export class PacienteService {
   buscarPacientesDeUmTerapeuta(): Observable<any> {
     return this.http.get(this.pacienteUrl.concat('/terapeuta'));
   }
+
+  adicionarPaciente(paciente): Observable<any> {
+    return this.http.post(this.pacienteUrl, paciente);
+  }
 }

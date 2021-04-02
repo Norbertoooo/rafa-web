@@ -1,13 +1,19 @@
 <div class="container-fluid">
+  <ngx-spinner></ngx-spinner>
   <app-dados-terapeuta></app-dados-terapeuta>
   <div class="card shadow">
     <div class="card-header">
-      <div class="card-title">
+      <div>
         <div class="row">
           <div class="col">
-            <h4 (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed">Pacientes</h4>
+            <h4>Pacientes</h4>
           </div>
           <div class="col text-right">
+            <button type=button class="btn btn-link mr-2" (click)="collapse.toggle()"
+                    [attr.aria-expanded]="!isCollapsed">
+              <fa-icon *ngIf="isCollapsed" icon="eye"></fa-icon>
+              <fa-icon *ngIf="!isCollapsed" icon="eye-slash"></fa-icon>
+            </button>
             <button class="btn btn-info" (click)="adicionarPaciente()">
               <fa-icon class="mr-2" icon="plus"></fa-icon>
               <span>Adicionar paciente</span>
@@ -42,7 +48,7 @@
                 <td>{{ paciente.nomeCompleto}}</td>
                 <td>{{ paciente.dataNascimento}}</td>
                 <td>
-                  <button class="btn btn-link ml-4">
+                  <button class="btn btn-link ml-4" (click)="visualizarResponsavel(paciente)">
                     <fa-icon icon="male" size="lg"></fa-icon>
                     <fa-icon icon="female" size="lg"></fa-icon>
                   </button>
@@ -56,18 +62,21 @@
               </tbody>
             </table>
           </div>
-          <div class="d-flex justify-content-between p-2">
-            <ngb-pagination [(page)]="paginaAtual"
-                            [pageSize]="tamanhoPagina"
-                            [collectionSize]="totalItens">
-            </ngb-pagination>
-
-            <select aria-label="pageSize" class="custom-select" style="width: auto" name="pageSize"
-                    [(ngModel)]="tamanhoPagina">
-              <option [value]="5">5 itens por pagina</option>
-              <option [value]="10">10 itens por pagina</option>
-              <option [value]="15">15 itens por pagina</option>
-            </select>
+          <div class="row">
+            <div class="col-sm text-left">
+              <ngb-pagination [(page)]="paginaAtual"
+                              [pageSize]="tamanhoPagina"
+                              [collectionSize]="totalItens">
+              </ngb-pagination>
+            </div>
+            <div class="col-sm text-right">
+              <select aria-label="tamanhoPagina" class="custom-select w-auto" name="tamanhoPagina"
+                      [(ngModel)]="tamanhoPagina">
+                <option [value]="5">5 itens por pagina</option>
+                <option [value]="10">10 itens por pagina</option>
+                <option [value]="15">15 itens por pagina</option>
+              </select>
+            </div>
           </div>
         </form>
       </div>

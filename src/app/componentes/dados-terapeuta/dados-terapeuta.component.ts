@@ -11,7 +11,7 @@ export class DadosTerapeutaComponent implements OnInit {
 
   terapeuta = new Terapeuta();
   estaBloqueado = true;
-  isCollapsed = false;
+  isCollapsed = true;
 
   constructor(private terapeutaService: TerapeutaService) {
   }

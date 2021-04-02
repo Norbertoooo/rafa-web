@@ -1,1 +1,66 @@
-<p>dashboard-responsavel works!</p>
+<div class="container-fluid">
+  <ngx-spinner></ngx-spinner>
+  <app-dados-responsavel></app-dados-responsavel>
+  <div class="card shadow">
+    <div class="card-header">
+      <div>
+        <div class="row">
+          <div class="col">
+            <h4>Protegidos</h4>
+          </div>
+          <div class="col text-right">
+            <button type=button class="btn btn-link mr-2" (click)="collapse.toggle()"
+                    [attr.aria-expanded]="!isCollapsed">
+              <fa-icon *ngIf="isCollapsed" icon="eye"></fa-icon>
+              <fa-icon *ngIf="!isCollapsed" icon="eye-slash"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div class="card-body">
+        <form>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead class="table-light">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nome Completo</th>
+                <th scope="col">Data de Nascimento</th>
+                <th scope="col">Ficha</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr
+                *ngFor="let paciente of pacientes | listFilter: filtro.value | slice: (paginaAtual-1) * tamanhoPagina : paginaAtual * tamanhoPagina">
+                <th scope="row">{{ paciente.id }}</th>
+                <td>{{ paciente.nomeCompleto}}</td>
+                <td>{{ paciente.dataNascimento}}</td>
+                <td>
+                  <button class="btn btn-link" (click)="emitirRelatorio()">
+                    <fa-icon icon="file-pdf" size="lg"></fa-icon>
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [(page)]="paginaAtual"
+                            [pageSize]="tamanhoPagina"
+                            [collectionSize]="totalItens">
+            </ngb-pagination>
+
+            <select aria-label="pageSize" class="custom-select" style="width: auto" name="pageSize"
+                    [(ngModel)]="tamanhoPagina">
+              <option [value]="5">5 itens por pagina</option>
+              <option [value]="10">10 itens por pagina</option>
+              <option [value]="15">15 itens por pagina</option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

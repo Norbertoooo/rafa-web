@@ -26,6 +26,9 @@ export class NavbarComponent implements OnInit {
     if (this.usuarioLogado.perfil === 'TERAPEUTA') {
       this.router.navigateByUrl('/dashboard-terapeuta').then();
     }
+    if (this.usuarioLogado.perfil === 'RESPONSAVEL') {
+      this.router.navigateByUrl('/dashboard-responsavel').then();
+    }
   }
 
   logout(): void {
