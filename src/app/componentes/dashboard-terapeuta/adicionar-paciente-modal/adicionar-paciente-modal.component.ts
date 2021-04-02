@@ -81,27 +81,7 @@ export class AdicionarPacienteModalComponent implements OnInit {
 
   adicionarResponsavel(): void {
     const responsavel = this.formularioPaciente.controls.responsaveis as FormArray;
-    responsavel.push(this.formBuilder.group(
-      {
-        dataNascimento: new FormControl(''),
-        nomeCompleto: new FormControl(''),
-        parentesco: new FormControl(''),
-        telefone: new FormControl(''),
-        cpf: new FormControl(''),
-        login: this.formBuilder.group({
-          email: ['']
-        }),
-        endereco: this.formBuilder.group({
-          bairro: [''],
-          cep: [''],
-          cidade: [''],
-          complemento: [''],
-          estado: [''],
-          numero: [''],
-          rua: ['']
-        })
-      }
-    ));
+    responsavel.push(this.criarResponsavel());
   }
 
   formatarData(dataNascimento): void {
