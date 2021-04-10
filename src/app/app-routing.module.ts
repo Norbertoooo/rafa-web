@@ -4,12 +4,14 @@ import {LoginComponent} from './componentes/login/login.component';
 import {CadastrarTerapeutaComponent} from './componentes/cadastrar-terapeuta/cadastrar-terapeuta.component';
 import {DashboardTerapeutaComponent} from './componentes/dashboard-terapeuta/dashboard-terapeuta.component';
 import {DashboardResponsavelComponent} from './componentes/dashboard-responsavel/dashboard-responsavel.component';
+import {SobreComponent} from './componentes/sobre/sobre.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'registrar', component: CadastrarTerapeutaComponent},
   {path: 'dashboard-terapeuta', component: DashboardTerapeutaComponent},
   {path: 'dashboard-responsavel', component: DashboardResponsavelComponent},
+  {path: 'sobre-projeto', component: SobreComponent},
   {path: '**', component: LoginComponent}
 ];
 

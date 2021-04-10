@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Terapeuta} from '../../models/terapeuta.model';
-import {CadastrarTerapeutaService} from '../../services/cadastrar-terapeuta.service';
+import {CadastrarTerapeutaService} from '../../shared/services/cadastrar-terapeuta.service';
 import {formatDate} from '@angular/common';
 import {Router} from '@angular/router';
-import {AlertService} from '../../services/alert.service';
+import {AlertaService} from '../../shared/services/alerta.service';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {EnderecoUtils} from '../../shared/utils/enderecoUtils';
 
 @Component({
   selector: 'app-registrar',
@@ -14,38 +15,14 @@ import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 export class CadastrarTerapeutaComponent implements OnInit {
 
   terapeuta: Terapeuta = new Terapeuta();
-  estados = [ 'Acre',
-    'Alagoas',
-    'Amapá',
-    'Amazonas',
-    'Bahia',
-    'Ceará',
-    'Espírito Santo',
-    'Goiás',
-    'Maranhão',
-    'Mato Grosso',
-    'Mato Grosso do Sul',
-    'Minas Gerais',
-    'Pará',
-    'Paraíba',
-    'Paraná',
-    'Pernambuco',
-    'Piauí',
-    'Rio de Janeiro',
-    'Rio Grande do Norte',
-    'Rio Grande do Sul',
-    'Rondônia',
-    'Roraima',
-    'Santa Catarina',
-    'São Paulo',
-    'Sergipe',
-    'Tocantins'];
+  estados = [];
 
   constructor(private cadastrarTerapeutaService: CadastrarTerapeutaService,
-              private router: Router, private alertService: AlertService) {
+              private router: Router, private alertService: AlertaService) {
   }
 
   ngOnInit(): void {
+    this.estados = EnderecoUtils.obterEstados();
   }
 
   cadastrar(): void {

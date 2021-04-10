@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Terapeuta} from '../../models/terapeuta.model';
+import {Component, OnInit} from '@angular/core';
+import {Responsavel} from '../../models/responsavel.model';
+import {ResponsavelService} from '../../shared/services/responsavel.service';
+import {AlertaService} from '../../shared/services/alerta.service';
 
 @Component({
   selector: 'app-dados-responsavel',
@@ -7,13 +9,20 @@ import {Terapeuta} from '../../models/terapeuta.model';
   styleUrls: ['./dados-responsavel.component.css']
 })
 export class DadosResponsavelComponent implements OnInit {
+
   estaBloqueado = true;
   isCollapsed = false;
-  terapeuta = new Terapeuta();
+  responsavel: Responsavel = {};
 
-  constructor() { }
+  constructor(private responsavelService: ResponsavelService, private alertService: AlertaService) {
+  }
 
   ngOnInit(): void {
+    this.responsavelService.buscarDadosResponsavel().subscribe((resposta) => {
+      this.responsavel = resposta;
+    }, (error) => {
+      this.alertService.exibirErro(error.error.mensagem);
+    });
   }
 
 }

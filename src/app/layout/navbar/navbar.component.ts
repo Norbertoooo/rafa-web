@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SessionStorageService} from 'ngx-webstorage';
 import {Router} from '@angular/router';
-import {LoginService} from '../../services/login.service';
+import {LoginService} from '../../shared/services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +11,8 @@ import {LoginService} from '../../services/login.service';
 export class NavbarComponent implements OnInit {
 
   usuarioLogado: any;
-  constructor(private sessionStorageService: SessionStorageService, private router: Router, private loginService: LoginService ) {
+
+  constructor(private sessionStorageService: SessionStorageService, private router: Router, private loginService: LoginService) {
   }
 
   ngOnInit(): void {
@@ -33,5 +34,9 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     this.loginService.logout();
+  }
+
+  navegarParaSobreProjeto(): void {
+    this.router.navigateByUrl('/sobre-projeto').then();
   }
 }

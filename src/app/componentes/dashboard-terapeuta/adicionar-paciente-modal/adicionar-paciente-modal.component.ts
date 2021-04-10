@@ -2,10 +2,12 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {Responsavel} from '../../../models/responsavel.model';
 import {Paciente} from '../../../models/paciente.model';
-import {PacienteService} from '../../../services/paciente.service';
+import {PacienteService} from '../../../shared/services/paciente.service';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AlertService} from '../../../services/alert.service';
+import {AlertaService} from '../../../shared/services/alerta.service';
 import {formatDate} from '@angular/common';
+import {EnderecoUtils} from '../../../shared/utils/enderecoUtils';
+import {ParentescoUtils} from '../../../shared/utils/parentesco.utils';
 
 @Component({
   selector: 'app-adicionar-paciente-modal',
@@ -17,17 +19,20 @@ export class AdicionarPacienteModalComponent implements OnInit {
   @Output() sucesso = new EventEmitter();
 
   responsavel: Responsavel = {};
-
+  estados = [];
+  parentesco = [];
   paciente: Paciente = {};
   formularioPaciente: FormGroup;
 
   constructor(private ngbActiveModal: NgbActiveModal,
               private pacienteService: PacienteService,
               private formBuilder: FormBuilder,
-              private alertService: AlertService) {
+              private alertService: AlertaService) {
   }
 
   ngOnInit(): void {
+    this.estados = EnderecoUtils.obterEstados();
+    this.parentesco = ParentescoUtils.obterOpcoesParentesco();
     this.formularioPaciente = this.formBuilder.group({
       nomeCompleto: ['', Validators.required],
       dataNascimento: ['', Validators.required],

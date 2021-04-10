@@ -49,8 +49,10 @@
             </div>
             <div class="form-group col-md-5">
               <label for="parentesco">Parentesco</label>
-              <input type="text" class="form-control" id="parentesco" placeholder="Pai, mãe, tio..."
-                     formControlName="parentesco">
+              <select class="form-control" id="parentesco" formControlName="parentesco" [value]="" required>
+                  <option value="">Selecione</option>
+]                 <option *ngFor="let opcao of parentesco" [value]="opcao"> {{opcao}} </option>
+              </select>
             </div>
           </div>
           <div class="form-row">
@@ -92,9 +94,9 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="estado">Estado</label>
-                <select id="estado" class="form-control" name="estado" required formControlName="estado">
-                  <option selected>Choose...</option>
-                  <option>...</option>
+                <select id="estado" class="form-control" name="estado" required formControlName="estado" [value]="">
+                  <option value="">Selecione o estado</option>
+                  <option *ngFor="let estado of estados" [ngValue]="estado" selected>{{estado}}</option>
                 </select>
               </div>
               <div class="form-group col-md-3">

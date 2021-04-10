@@ -32,8 +32,7 @@
               </tr>
               </thead>
               <tbody>
-              <tr
-                *ngFor="let paciente of pacientes | listFilter: filtro.value | slice: (paginaAtual-1) * tamanhoPagina : paginaAtual * tamanhoPagina">
+              <tr *ngFor="let paciente of pacientes | listFilter: filtro.value | slice: (paginaAtual-1) * tamanhoPagina : paginaAtual * tamanhoPagina">
                 <th scope="row">{{ paciente.id }}</th>
                 <td>{{ paciente.nomeCompleto}}</td>
                 <td>{{ paciente.dataNascimento}}</td>
@@ -52,7 +51,7 @@
                             [collectionSize]="totalItens">
             </ngb-pagination>
 
-            <select aria-label="pageSize" class="custom-select" style="width: auto" name="pageSize"
+            <select aria-label="tamanhoPagina" class="custom-select" style="width: auto" name="tamanhoPagina"
                     [(ngModel)]="tamanhoPagina">
               <option [value]="5">5 itens por pagina</option>
               <option [value]="10">10 itens por pagina</option>

@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Paciente} from '../../models/paciente.model';
-import {AlertService} from '../../services/alert.service';
-import {PacienteService} from '../../services/paciente.service';
+import {AlertaService} from '../../shared/services/alerta.service';
+import {PacienteService} from '../../shared/services/paciente.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {map, startWith} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AdicionarPacienteModalComponent} from './adicionar-paciente-modal/adicionar-paciente-modal.component';
-import {RelatorioService} from '../../services/relatorio.service';
+import {RelatorioService} from '../../shared/services/relatorio.service';
 import {VisualizarResponsavelModalComponent} from './visualizar-responsavel-modal/visualizar-responsavel-modal.component';
 import {NgxSpinnerService} from 'ngx-spinner';
 
@@ -27,7 +27,7 @@ export class DashboardTerapeutaComponent implements OnInit {
   tamanhoPagina = 5;
   totalItens: any;
 
-  constructor(private pacienteService: PacienteService, private alertService: AlertService, private spinnerService: NgxSpinnerService,
+  constructor(private pacienteService: PacienteService, private alertService: AlertaService, private spinnerService: NgxSpinnerService,
               private ngbModalService: NgbModal, private relatorioService: RelatorioService) {
   }
 

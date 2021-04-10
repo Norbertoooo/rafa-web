@@ -18,15 +18,15 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {registerLocaleData} from '@angular/common';
 import localePtBr from '@angular/common/locales/pt';
 import {AlertComponent} from './layout/alert/alert.component';
-import {AlertService} from './services/alert.service';
-import {LoginService} from './services/login.service';
-import {CadastrarTerapeutaService} from './services/cadastrar-terapeuta.service';
+import {AlertaService} from './shared/services/alerta.service';
+import {LoginService} from './shared/services/login.service';
+import {CadastrarTerapeutaService} from './shared/services/cadastrar-terapeuta.service';
 import {NgxWebstorageModule} from 'ngx-webstorage';
-import {TerapeutaService} from './services/terapeuta.service';
-import {PacienteService} from './services/paciente.service';
+import {TerapeutaService} from './shared/services/terapeuta.service';
+import {PacienteService} from './shared/services/paciente.service';
 import {AuthInterceptor} from './interceptors/auth.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
-import { ListFilterPipe } from './pipes/list-filter.pipe';
+import { ListFilterPipe } from './shared/pipes/list-filter.pipe';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
@@ -36,6 +36,8 @@ import { environment } from '../environments/environment';
 import { VisualizarResponsavelModalComponent } from './componentes/dashboard-terapeuta/visualizar-responsavel-modal/visualizar-responsavel-modal.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ResponsavelService} from './shared/services/responsavel.service';
+import { SobreComponent } from './componentes/sobre/sobre.component';
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -55,7 +57,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     AlertComponent,
     ListFilterPipe,
     AdicionarPacienteModalComponent,
-    VisualizarResponsavelModalComponent
+    VisualizarResponsavelModalComponent,
+    SobreComponent
   ],
   imports: [
     BrowserModule,
@@ -72,10 +75,11 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
-    AlertService,
+    AlertaService,
     LoginService,
     CadastrarTerapeutaService,
     TerapeutaService,
+    ResponsavelService,
     PacienteService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

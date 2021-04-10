@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Login} from './login.model';
-import {LoginService} from '../../services/login.service';
+import {LoginService} from '../../shared/services/login.service';
 import {SessionStorageService} from 'ngx-webstorage';
 import {Router} from '@angular/router';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {AlertService} from '../../services/alert.service';
+import {AlertaService} from '../../shared/services/alerta.service';
+import {ErroModel} from '../../models/erro.model';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   login = new Login();
 
   constructor(private loginService: LoginService, private router: Router,
-              private sessionStorageService: SessionStorageService, private alertService: AlertService) {
+              private sessionStorageService: SessionStorageService, private alertService: AlertaService) {
   }
 
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
       }
     }, (error: HttpErrorResponse) => {
       console.log(error);
-      this.alertService.exibirErro(error.error.mensagem);
+      this.alertService.exibirErro(error.message);
     });
   }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TerapeutaService} from '../../services/terapeuta.service';
+import {TerapeutaService} from '../../shared/services/terapeuta.service';
 import {Terapeuta} from '../../models/terapeuta.model';
 
 @Component({
@@ -21,6 +21,7 @@ export class DadosTerapeutaComponent implements OnInit {
   }
 
   editarTerapeuta(): void {
+    this.estaBloqueado === true ? this.estaBloqueado = false: this.estaBloqueado = true;
 
   }
 

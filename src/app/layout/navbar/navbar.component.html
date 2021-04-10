@@ -1,6 +1,10 @@
 <nav class="navbar navbar-dark bg-primary justify-content-between">
   <a class="navbar-brand" routerLink="/">Rafa - Web</a>
   <div class="form-inline">
+    <button class="btn btn-light my-2 my-sm-0 mr-3" type="submit" (click)="navegarParaSobreProjeto()">
+      <fa-icon class="mr-2" icon="book-reader"></fa-icon>
+      <span>Sobre</span>
+    </button>
     <button [hidden]="estaLogado()" class="btn btn-light my-2 my-sm-0 mr-3" type="submit" (click)="navegarParaDashboard()">
       <fa-icon class="mr-2" icon="book-open"></fa-icon>
       <span>Dashboard</span>
@@ -10,5 +14,4 @@
       <span>Logout</span>
     </button>
   </div>
-
 </nav>

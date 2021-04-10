@@ -1,4 +1,4 @@
-import {Endereco} from './endereco.model';
+import {Endereco, EnderecoInterface} from './endereco.model';
 import {Login} from '../componentes/login/login.model';
 import {Paciente} from './paciente.model';
 
@@ -11,5 +11,5 @@ export interface Responsavel {
   cpf?: string;
   protegidos?: Paciente[];
   login?: Login;
-  endereco?: Endereco;
+  endereco?: EnderecoInterface;
 }
