@@ -14,4 +14,9 @@ export class TerapeutaService {
   buscarDadosTerapeuta(): Observable<any> {
     return this.http.get(this.terapeutaUrl);
   }
+
+  atualizarTerapeuta(terapeuta): Observable<any> {
+    return this.http.put(this.terapeutaUrl, terapeuta);
+  }
+
 }

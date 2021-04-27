@@ -1,5 +1,5 @@
 import {Endereco, EnderecoInterface} from './endereco.model';
-import {Login} from '../componentes/login/login.model';
+import {Login} from '../components/login/login.model';
 import {Paciente} from './paciente.model';
 
 export interface Responsavel {

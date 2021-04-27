@@ -1,5 +1,9 @@
 <div class="card mb-4 mt-4 shadow">
-
+  <ngx-spinner type="cog"
+               color="#79bbb5"
+               [fullScreen]="false"
+               name="dadosTerapeutaSpinner">
+  </ngx-spinner>
   <div class="card-header">
     <div class="row">
 
@@ -17,11 +21,12 @@
           <fa-icon icon="edit" class="mr-2"></fa-icon>
           <span>Editar Informações</span>
         </button>
-        <!-- <button [disabled]="terapeutaForm.form.pristine" type=submit class="btn btn-primary"
+        <button [disabled]="terapeutaForm.form.pristine" type=submit class="btn btn-primary"
                 (click)="salvarAlteracoes(); terapeutaForm.form.reset()">
-          <span><i class="fa fa-save mr-2"></i> Salvar Alterações</span>
+          <fa-icon icon="save" class="mr-2"></fa-icon>
+          <span>Salvar Alterações</span>
         </button>
-       -->
+
       </div>
 
     </div>
@@ -37,7 +42,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="user"></fa-icon>
+                  <fa-icon ngbPopover="Nome Completo" triggers="mouseenter:mouseleave" icon="user"></fa-icon>
                 </div>
               </div>
               <input id="terapeuta-nome-completo" class="form-control" aria-label="nomeCompleto"
@@ -49,7 +54,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="graduation-cap"></fa-icon>
+                  <fa-icon ngbPopover="Especialidade" triggers="mouseenter:mouseleave" icon="graduation-cap"></fa-icon>
                 </div>
               </div>
               <input class="form-control" aria-label="especialidade" name="especialidade"
@@ -61,11 +66,12 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="birthday-cake"></fa-icon>
+                  <fa-icon ngbPopover="Data de Nascimento" triggers="mouseenter:mouseleave"
+                           icon="birthday-cake"></fa-icon>
                 </div>
               </div>
-              <input class="form-control" aria-label="dataNascimento" name="dataNascimento"
-                     [readOnly]="estaBloqueado" [(ngModel)]="terapeuta.dataNascimento">
+              <input type="date" class="form-control" aria-label="dataNascimento"
+                     name="dataNascimento" [readOnly]="estaBloqueado" [(ngModel)]="dataNascimento">
             </div>
           </div>
 
@@ -73,7 +79,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="id-card"></fa-icon>
+                  <fa-icon ngbPopover="CPF" triggers="mouseenter:mouseleave" icon="id-card"></fa-icon>
                 </div>
               </div>
               <input maxlength="14" type="text" class="form-control"
@@ -90,7 +96,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="graduation-cap"></fa-icon>
+                  <fa-icon ngbPopover="Formação" triggers="mouseenter:mouseleave" icon="graduation-cap"></fa-icon>
                 </div>
               </div>
               <input class="form-control" aria-label="formacao" name="formacao"
@@ -102,7 +108,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="at"></fa-icon>
+                  <fa-icon ngbPopover="Email" triggers="mouseenter:mouseleave" icon="at"></fa-icon>
                 </div>
               </div>
               <input class="form-control" readonly aria-label="email" value="{{terapeuta?.login.email}}">
@@ -113,7 +119,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="mobile-alt"></fa-icon>
+                  <fa-icon ngbPopover="Telefone" triggers="mouseenter:mouseleave" icon="mobile-alt"></fa-icon>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="telefone"
@@ -126,7 +132,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="id-card"></fa-icon>
+                  <fa-icon ngbPopover="CRFa" triggers="mouseenter:mouseleave" icon="id-card"></fa-icon>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="crfa" name="crfa" mask="0-00000"
@@ -142,7 +148,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="road"></fa-icon>
+                  <fa-icon ngbPopover="Rua" triggers="mouseenter:mouseleave" icon="road"></fa-icon>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="rua" name="rua"
@@ -154,7 +160,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="house-user"></fa-icon>
+                  <fa-icon ngbPopover="Bairro" triggers="mouseenter:mouseleave" icon="house-user"></fa-icon>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="bairro" name="bairro"
@@ -167,7 +173,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="house-user"></fa-icon>
+                  <fa-icon ngbPopover="Número" triggers="mouseenter:mouseleave" icon="house-user"></fa-icon>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="numero" name="numero"
@@ -180,7 +186,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="house-user"></fa-icon>
+                  <fa-icon ngbPopover="CEP" triggers="mouseenter:mouseleave" icon="house-user"></fa-icon>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="cep"
@@ -197,7 +203,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="house-user"></fa-icon>
+                  <fa-icon ngbPopover="Complemento" triggers="mouseenter:mouseleave" icon="house-user"></fa-icon>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="complemento" name="complemento"
@@ -209,7 +215,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="map"></fa-icon>
+                  <fa-icon ngbPopover="Estado" triggers="mouseenter:mouseleave" icon="map"></fa-icon>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="estado" name="estado"
@@ -221,7 +227,7 @@
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <fa-icon icon="city"></fa-icon>
+                  <fa-icon ngbPopover="Cidade" triggers="mouseenter:mouseleave" icon="city"></fa-icon>
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="cidade" name="cidade"

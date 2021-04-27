@@ -16,4 +16,8 @@ export class ResponsavelService {
   buscarDadosResponsavel(): Observable<any> {
     return this.http.get(this.responsavelUrl);
   }
+
+  atualizarResponsavel(responsavel): Observable<any> {
+    return this.http.put(this.responsavelUrl, responsavel);
+  }
 }

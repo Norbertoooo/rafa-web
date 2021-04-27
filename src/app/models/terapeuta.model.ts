@@ -1,4 +1,4 @@
-import {Login} from '../componentes/login/login.model';
+import {Login} from '../components/login/login.model';
 import {Endereco} from './endereco.model';
 
 export class Terapeuta {
