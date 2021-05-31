@@ -5,6 +5,7 @@ import {CadastrarDesafioComponent} from './cadastrar-desafio/cadastrar-desafio.c
 import {Desafio} from '../../models/desafio.model';
 import {AlertaService} from '../../shared/services/alerta.service';
 import {EditarDesafioComponent} from './editar-desafio/editar-desafio.component';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-desafios',
@@ -18,8 +19,10 @@ export class DesafiosComponent implements OnInit {
   tamanhoPagina = 10;
   paginaAtual = 1;
   totalItens: any;
+  desafioSpinner = 'desafioSpinner';
 
-  constructor(private desafiosService: DesafiosService, private ngbModalService: NgbModal, private alertaService: AlertaService) {
+  constructor(private desafiosService: DesafiosService, private ngbModalService: NgbModal,
+              private alertaService: AlertaService, private spinnerService: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
@@ -36,9 +39,11 @@ export class DesafiosComponent implements OnInit {
   }
 
   listarDesafios(): void {
+    this.spinnerService.show(this.desafioSpinner);
     this.desafiosService.obterDesafios(this.paginaAtual - 1, this.tamanhoPagina).subscribe(resposta => {
       this.desafios = resposta.content;
       this.totalItens = resposta.totalElements;
+      this.spinnerService.hide(this.desafioSpinner);
     });
   }
 
