@@ -1,0 +1,83 @@
+<div class="card mb-4 mt-4 shadow">
+  <div class="card-header">
+    <div class="row">
+
+      <div class="col">
+        <h4>Desafios</h4>
+      </div>
+
+      <div class="col text-right">
+        <button type=button class="btn btn-link mr-2" (click)="collapse.toggle()"
+                [attr.aria-expanded]="!isCollapsed">
+          <fa-icon *ngIf="isCollapsed" icon="eye"></fa-icon>
+          <fa-icon *ngIf="!isCollapsed" icon="eye-slash"></fa-icon>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="card-body">
+
+      <div class="row">
+        <div class="col text-right">
+          <button class="btn btn-primary mb-3" (click)="cadastrarDesafio()">
+            <fa-icon class="mr-2" icon="plus"></fa-icon>
+            <span>Cadastrar Desafio</span>
+          </button>
+        </div>
+
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-light">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Perguntas</th>
+            <th scope="col">Respostas</th>
+            <th scope="col">Score Inicial</th>
+            <th scope="col">Editar/Excluir</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let desafio of desafios">
+            <td>{{desafio.id}}</td>
+            <td>{{desafio.pergunta}}</td>
+            <td>{{desafio.resposta}}</td>
+            <td>{{desafio.scoreInicial}}</td>
+            <td>
+              <button class="btn-sm btn-primary mr-2" (click)="editarDesafio(desafio)">
+                <fa-icon icon="edit"></fa-icon>
+              </button>
+              <button class="btn-sm btn-danger" (click)="deletarDesafio(desafio.id)">
+                <fa-icon icon="trash"></fa-icon>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-sm text-left">
+          <ngb-pagination [(page)]="paginaAtual"
+                          [pageSize]="tamanhoPagina"
+                          [directionLinks]="true"
+                          (pageChange)="listarDesafios()"
+                          [collectionSize]="totalItens">
+          </ngb-pagination>
+        </div>
+        <div class="col-sm text-right">
+          <select aria-label="tamanhoPagina" class="custom-select w-auto" name="tamanhoPagina"
+                  [(ngModel)]="tamanhoPagina" (change)="listarDesafios()">
+            <option [value]="5">5 itens por pagina</option>
+            <option [value]="10">10 itens por pagina</option>
+            <option [value]="15">15 itens por pagina</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

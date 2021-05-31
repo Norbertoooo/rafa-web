@@ -38,6 +38,10 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ResponsavelService} from './shared/services/responsavel.service';
 import { SobreComponent } from './components/sobre/sobre.component';
+import { DesafiosComponent } from './components/desafios/desafios.component';
+import {DesafiosService} from './shared/services/desafios.service';
+import { CadastrarDesafioComponent } from './components/desafios/cadastrar-desafio/cadastrar-desafio.component';
+import { EditarDesafioComponent } from './components/desafios/editar-desafio/editar-desafio.component';
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -58,7 +62,10 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     ListFilterPipe,
     AdicionarPacienteModalComponent,
     VisualizarResponsavelModalComponent,
-    SobreComponent
+    SobreComponent,
+    DesafiosComponent,
+    CadastrarDesafioComponent,
+    EditarDesafioComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +88,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     TerapeutaService,
     ResponsavelService,
     PacienteService,
+    DesafiosService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
