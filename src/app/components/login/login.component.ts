@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {AlertaService} from '../../shared/services/alerta.service';
 import {ErroModel} from '../../models/erro.model';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   login = new Login();
 
-  constructor(private loginService: LoginService, private router: Router,
+  constructor(private loginService: LoginService, private router: Router, private spinnerService: NgxSpinnerService,
               private sessionStorageService: SessionStorageService, private alertService: AlertaService) {
   }
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   efetuarLogin(): void {
+    this.spinnerService.show();
     this.loginService.login(this.login).subscribe((resposta) => {
       console.log(resposta);
       this.sessionStorageService.store('usuario-logado', resposta);
@@ -33,8 +35,10 @@ export class LoginComponent implements OnInit {
       if (resposta.perfil === 'RESPONSAVEL') {
         this.router.navigateByUrl('/dashboard-responsavel').then();
       }
+      this.spinnerService.hide();
     }, (error: HttpErrorResponse) => {
       console.log(error);
+      this.spinnerService.hide();
       this.alertService.exibirErro(error.message);
     });
   }

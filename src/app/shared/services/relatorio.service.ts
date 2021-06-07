@@ -13,7 +13,7 @@ export class RelatorioService {
   constructor(private http: HttpClient) {
   }
 
-  buscarRelatorio(): Observable<any> {
-    return this.http.get(this.relatorioUrl, {responseType: 'blob'});
+  buscarRelatorio(pacienteId: number): Observable<any> {
+    return this.http.get(this.relatorioUrl.concat('/' + pacienteId), {responseType: 'blob'});
   }
 }

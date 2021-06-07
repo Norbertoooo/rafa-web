@@ -35,9 +35,9 @@ export class DashboardResponsavelComponent implements OnInit {
     });
   }
 
-  emitirRelatorio(): void {
+  emitirRelatorio(pacienteId: number): void {
     this.spinnerService.show();
-    this.relatorioService.buscarRelatorio().subscribe(resposta => {
+    this.relatorioService.buscarRelatorio(pacienteId).subscribe(resposta => {
       this.exibirArquivo(resposta);
       this.spinnerService.hide();
     });

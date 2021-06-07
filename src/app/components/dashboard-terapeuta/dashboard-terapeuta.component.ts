@@ -59,7 +59,7 @@ export class DashboardTerapeutaComponent implements OnInit {
 
   adicionarPaciente(): void {
     const modalRef = this.ngbModalService.open(AdicionarPacienteModalComponent, {size: 'lg'});
-    modalRef.componentInstance.sucesso.subscribe( (resposta) => {
+    modalRef.componentInstance.sucesso.subscribe((resposta) => {
       if (resposta) {
         this.buscarPacientes();
       }
@@ -72,10 +72,14 @@ export class DashboardTerapeutaComponent implements OnInit {
     modalRef.componentInstance.responsaveis = paciente.responsaveis;
   }
 
-  emitirRelatorio(): void {
+  emitirRelatorio(pacienteId): void {
     this.spinnerService.show();
-    this.relatorioService.buscarRelatorio().subscribe(resposta => {
+    this.relatorioService.buscarRelatorio(pacienteId).subscribe(resposta => {
       this.exibirArquivo(resposta);
+      this.spinnerService.hide();
+    }, error => {
+      console.log(error);
+      this.alertService.exibirErro(error.mensagem);
       this.spinnerService.hide();
     });
   }

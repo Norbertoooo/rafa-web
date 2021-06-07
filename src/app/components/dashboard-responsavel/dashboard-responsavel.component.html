@@ -37,7 +37,7 @@
                 <td>{{ paciente.nomeCompleto}}</td>
                 <td>{{ paciente.dataNascimento}}</td>
                 <td>
-                  <button class="btn btn-link" (click)="emitirRelatorio()">
+                  <button class="btn btn-link" (click)="emitirRelatorio(paciente.id)">
                     <fa-icon icon="file-pdf" size="lg"></fa-icon>
                   </button>
                 </td>
