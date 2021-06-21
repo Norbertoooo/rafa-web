@@ -42,6 +42,9 @@ import { DesafiosComponent } from './components/desafios/desafios.component';
 import {DesafiosService} from './shared/services/desafios.service';
 import { CadastrarDesafioComponent } from './components/desafios/cadastrar-desafio/cadastrar-desafio.component';
 import { EditarDesafioComponent } from './components/desafios/editar-desafio/editar-desafio.component';
+import { AtendimentosComponent } from './components/atendimentos/atendimentos.component';
+import {AtendimentoService} from './shared/services/atendimento.service';
+import {ObservacaoModalComponent} from './components/atendimentos/observacao/observacao-modal.component';
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -65,7 +68,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     SobreComponent,
     DesafiosComponent,
     CadastrarDesafioComponent,
-    EditarDesafioComponent
+    EditarDesafioComponent,
+    AtendimentosComponent,
+    ObservacaoModalComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +94,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     ResponsavelService,
     PacienteService,
     DesafiosService,
+    AtendimentoService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

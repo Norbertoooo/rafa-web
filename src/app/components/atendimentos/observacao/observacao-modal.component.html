@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4 class="modal-title">Observação</h4>
+</div>
+<div class="modal-body">
+  <textarea [disabled]="bloqueado" [(ngModel)]="observacao" class="form-control">{{atendimento.observacao}}</textarea>
+</div>
+<div class="modal-footer">
+
+  <button *ngIf="bloqueado" class="btn btn-primary" (click)="bloqueado = false">
+    <fa-icon class="mr-2" icon="edit"></fa-icon>
+    <span>Editar</span>
+  </button>
+
+  <button *ngIf="!bloqueado" class="btn btn-primary" (click)="editar()">
+    <fa-icon class="mr-2" icon="save"></fa-icon>
+    <span>Salvar</span>
+  </button>
+
+  <button class="btn btn-danger" (click)="cancelar()">
+    <fa-icon class="mr-2" icon="times"></fa-icon>
+    <span>Fechar</span>
+  </button>
+
+</div>
