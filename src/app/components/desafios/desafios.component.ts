@@ -6,6 +6,7 @@ import {Desafio} from '../../models/desafio.model';
 import {AlertaService} from '../../shared/services/alerta.service';
 import {EditarDesafioComponent} from './editar-desafio/editar-desafio.component';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {ConfirmarExclusaoDesafioComponent} from './confirmar-exclusao-desafio/confirmar-exclusao-desafio.component';
 
 @Component({
   selector: 'app-desafios',
@@ -31,7 +32,7 @@ export class DesafiosComponent implements OnInit {
 
   cadastrarDesafio(): void {
     const modalRef = this.ngbModalService.open(CadastrarDesafioComponent);
-    modalRef.componentInstance.emitirConfirmacao.subscribe( resposta => {
+    modalRef.componentInstance.emitirConfirmacao.subscribe(resposta => {
       if (resposta) {
         this.listarDesafios();
       }
@@ -47,8 +48,18 @@ export class DesafiosComponent implements OnInit {
     });
   }
 
+  abrirConfirmacaoExclusao(desafio: Desafio): void {
+    const modalRef = this.ngbModalService.open(ConfirmarExclusaoDesafioComponent);
+    modalRef.componentInstance.desafio = desafio;
+    modalRef.componentInstance.emitirConfirmacao.subscribe(resposta => {
+      if (resposta) {
+        this.deletarDesafio(desafio.id);
+      }
+    });
+  }
+
   deletarDesafio(id: number): void {
-    this.desafiosService.deletarDesafio(id).subscribe( resposta => {
+    this.desafiosService.deletarDesafio(id).subscribe(resposta => {
       this.alertaService.exibirSucesso('Desafio excluído com sucesso!');
       this.listarDesafios();
     });
@@ -57,7 +68,7 @@ export class DesafiosComponent implements OnInit {
   editarDesafio(desafio: Desafio): void {
     const modalRef = this.ngbModalService.open(EditarDesafioComponent);
     modalRef.componentInstance.desafio = desafio;
-    modalRef.componentInstance.emitirConfirmacao.subscribe( resposta => {
+    modalRef.componentInstance.emitirConfirmacao.subscribe(resposta => {
       if (resposta) {
         this.listarDesafios();
       }

@@ -45,6 +45,7 @@ import { EditarDesafioComponent } from './components/desafios/editar-desafio/edi
 import { AtendimentosComponent } from './components/atendimentos/atendimentos.component';
 import {AtendimentoService} from './shared/services/atendimento.service';
 import {ObservacaoModalComponent} from './components/atendimentos/observacao/observacao-modal.component';
+import {ConfirmarExclusaoDesafioComponent} from './components/desafios/confirmar-exclusao-desafio/confirmar-exclusao-desafio.component';
 
 registerLocaleData(localePtBr, 'pt-BR');
 
@@ -67,6 +68,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     VisualizarResponsavelModalComponent,
     SobreComponent,
     DesafiosComponent,
+    ConfirmarExclusaoDesafioComponent,
     CadastrarDesafioComponent,
     EditarDesafioComponent,
     AtendimentosComponent,

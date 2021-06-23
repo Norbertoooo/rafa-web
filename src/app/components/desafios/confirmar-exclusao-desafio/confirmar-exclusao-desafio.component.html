@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4>Certeza que deseja excluir o seguinte desafio?</h4>
+</div>
+<div class="modal-body">
+  <form #editarDesafioForm>
+    <div>
+      <span>Pergunta</span>
+      <input disabled class="form-control" type="text" #pergunta="ngModel" [(ngModel)]="desafio.pergunta" name="pergunta">
+    </div>
+    <div class="mt-3">
+      <span>Resposta</span>
+      <input disabled class="form-control" type="text" #resposta="ngModel" [(ngModel)]="desafio.resposta" name="resposta">
+    </div>
+    <div class="mt-3">
+      <span>Score Inicial</span>
+      <input disabled class="form-control" type="number" #scoreInicial="ngModel" [(ngModel)]="desafio.scoreInicial"
+             name="scoreInicial">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-secondary" (click)="cancelar()">
+    <fa-icon class="mr-2" icon="times"></fa-icon>
+    <span>Cancelar</span>
+  </button>
+  <button class="btn btn-danger" (click)="excluir()">
+    <fa-icon class="mr-2" icon="trash"></fa-icon>
+    <span>Excluir</span>
+  </button>
+</div>

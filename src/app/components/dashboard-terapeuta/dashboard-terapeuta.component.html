@@ -17,10 +17,6 @@
               <fa-icon *ngIf="isCollapsed" icon="eye"></fa-icon>
               <fa-icon *ngIf="!isCollapsed" icon="eye-slash"></fa-icon>
             </button>
-            <button class="btn btn-info" (click)="adicionarPaciente()">
-              <fa-icon class="mr-2" icon="plus"></fa-icon>
-              <span>Adicionar paciente</span>
-            </button>
           </div>
         </div>
       </div>
@@ -29,10 +25,21 @@
       <div class="card-body">
         <form>
           <div class="form-group form-inline">
-            <span>Buscar paciente:</span>
-            <input class="form-control ml-2" aria-label="filtro" type="text" name="filtro"
-                   [formControl]="filtro" (input)="$event.target.value"/>
+            <div class="">
+              <span>Buscar paciente:</span>
+              <input class="form-control ml-2" aria-label="filtro" type="text" name="filtro"
+                     [formControl]="filtro" (input)="$event.target.value"/>
+            </div>
+
+            <div class="col text-right">
+              <button class="btn btn-info" (click)="adicionarPaciente()">
+                <fa-icon class="mr-2" icon="plus"></fa-icon>
+                <span>Adicionar paciente</span>
+              </button>
+            </div>
+
           </div>
+
           <div class="table-responsive">
             <table class="table table-hover">
               <thead class="table-light">

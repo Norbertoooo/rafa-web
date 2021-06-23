@@ -17,15 +17,6 @@
           <fa-icon *ngIf="isCollapsed" icon="eye"></fa-icon>
           <fa-icon *ngIf="!isCollapsed" icon="eye-slash"></fa-icon>
         </button>
-        <button type=submit class="btn btn-primary mr-3" (click)="editarTerapeuta()">
-          <fa-icon icon="edit" class="mr-2"></fa-icon>
-          <span>Editar Informações</span>
-        </button>
-        <button [disabled]="terapeutaForm.form.pristine" type=submit class="btn btn-primary"
-                (click)="salvarAlteracoes(); terapeutaForm.form.reset()">
-          <fa-icon icon="save" class="mr-2"></fa-icon>
-          <span>Salvar Alterações</span>
-        </button>
 
       </div>
 
@@ -33,6 +24,20 @@
   </div>
 
   <div class="card" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="row">
+      <div class="col text-right mt-3 mr-4">
+        <button type=submit class="btn btn-primary mr-3" (click)="editarTerapeuta()">
+          <fa-icon icon="edit" class="mr-2"></fa-icon>
+          <span>Editar Informações</span>
+        </button>
+        <button *ngIf="!estaBloqueado" [disabled]="terapeutaForm.form.pristine" type=submit class="btn btn-primary"
+                (click)="salvarAlteracoes(); terapeutaForm.form.reset()">
+          <fa-icon icon="save" class="mr-2"></fa-icon>
+          <span>Salvar Alterações</span>
+        </button>
+      </div>
+    </div>
+
     <div class="card-body">
       <form class="form-group" id="terapeuta" #terapeutaForm="ngForm">
 
