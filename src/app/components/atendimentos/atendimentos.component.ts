@@ -12,8 +12,7 @@ import {ObservacaoModalComponent} from './observacao/observacao-modal.component'
 })
 export class AtendimentosComponent implements OnInit {
 
-  @Input()
-  terapeuta: Terapeuta;
+  @Input() terapeuta: Terapeuta = new Terapeuta();
 
   isCollapsed = true;
   paginaAtual = 1;
@@ -31,7 +30,7 @@ export class AtendimentosComponent implements OnInit {
   }
 
   listarAtendimentos(): void {
-    this.atendimentoService.obterAtendimentosTerapeuta(this.paginaAtual, this.tamanhoPagina)
+    this.atendimentoService.obterAtendimentosTerapeuta()
       .subscribe(resposta => {
         this.atendimentos = resposta;
         this.totalItens = this.atendimentos.length;

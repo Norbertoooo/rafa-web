@@ -128,7 +128,7 @@
                 </div>
               </div>
               <input type="text" class="form-control" aria-label="telefone"
-                     name="telefone" mask="(00) 0 0000-0000" maxlength="11"
+                     name="telefone" mask="(00) 0 0000-0000"
                      [readOnly]="estaBloqueado" [(ngModel)]="terapeuta.telefone">
             </div>
           </div>
@@ -223,8 +223,10 @@
                   <fa-icon ngbPopover="Estado" triggers="mouseenter:mouseleave" icon="map"></fa-icon>
                 </div>
               </div>
-              <input type="text" class="form-control" aria-label="estado" name="estado"
-                     [readOnly]="estaBloqueado" [(ngModel)]="terapeuta.endereco.estado">
+              <select [disabled]="estaBloqueado" id="estado" class="form-control" name="estado" [(ngModel)]="terapeuta.endereco.estado">
+                <option value="">Selecione o estado</option>
+                <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
+              </select>
             </div>
           </div>
 

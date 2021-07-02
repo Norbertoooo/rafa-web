@@ -3,6 +3,7 @@ import {Endereco} from './endereco.model';
 
 export class Terapeuta {
   constructor(
+    public id?: number,
     public nomeCompleto?: string,
     public dataNascimento?: string,
     public cpf?: string,

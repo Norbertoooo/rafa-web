@@ -45,7 +45,7 @@
           <div class="form-row">
             <div class="form-group col-md-7">
               <label for="Telefone">Telefone</label>
-              <input type="text" class="form-control" id="Telefone" placeholder="00 0 0000-0000" formControlName="telefone">
+              <input type="tel" class="form-control" id="Telefone" mask="(00) 0 0000-0000" formControlName="telefone">
             </div>
             <div class="form-group col-md-5">
               <label for="parentesco">Parentesco</label>
@@ -64,7 +64,7 @@
             </div>
             <div class="form-group col-md-5">
               <label for="cpf">CPF</label>
-              <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" formControlName="cpf">
+              <input type="text" class="form-control" id="cpf" mask="000.000.000-00" pattern="\d*" formControlName="cpf">
             </div>
           </div>
 

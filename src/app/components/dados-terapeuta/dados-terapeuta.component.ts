@@ -3,6 +3,7 @@ import {TerapeutaService} from '../../shared/services/terapeuta.service';
 import {Terapeuta} from '../../models/terapeuta.model';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {AlertaService} from '../../shared/services/alerta.service';
+import {EnderecoUtils} from '../../shared/utils/enderecoUtils';
 
 @Component({
   selector: 'app-dados-terapeuta',
@@ -15,6 +16,7 @@ export class DadosTerapeutaComponent implements OnInit {
   dataNascimento: any;
   estaBloqueado = true;
   isCollapsed = true;
+  estados = [];
 
   constructor(private terapeutaService: TerapeutaService,
               private spinnerService: NgxSpinnerService,
@@ -22,15 +24,21 @@ export class DadosTerapeutaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.estados = EnderecoUtils.obterEstados();
+    this.obterDadosTerapeuta();
+  }
+
+  editarTerapeuta(): void {
+    this.estaBloqueado === true ? this.estaBloqueado = false : this.estaBloqueado = true;
+    this.obterDadosTerapeuta();
+  }
+
+  obterDadosTerapeuta(): void {
     this.terapeutaService.buscarDadosTerapeuta().subscribe(resposta => {
       this.terapeuta = resposta;
       this.dataNascimento = this.formatarStringDataPadraoUSA();
       console.log(this.dataNascimento);
     });
-  }
-
-  editarTerapeuta(): void {
-    this.estaBloqueado === true ? this.estaBloqueado = false : this.estaBloqueado = true;
   }
 
   salvarAlteracoes(): void {

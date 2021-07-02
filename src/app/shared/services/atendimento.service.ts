@@ -11,8 +11,8 @@ export class AtendimentoService {
   constructor(private http: HttpClient) {
   }
 
-  obterAtendimentosTerapeuta(pagina: number, tamanho: number): Observable<any> {
-    return this.http.get(this.atendimentoUrl.concat('/terapeuta/1'));
+  obterAtendimentosTerapeuta(): Observable<any> {
+    return this.http.get(this.atendimentoUrl.concat('/terapeuta'));
   }
 
   editarObservacao(atendimentoId: number, atendimento): Observable<any> {

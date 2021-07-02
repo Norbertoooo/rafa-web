@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {Desafio} from '../../../models/desafio.model';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {DesafiosService} from '../../../shared/services/desafios.service';
@@ -11,7 +11,7 @@ import {AlertaService} from '../../../shared/services/alerta.service';
 })
 export class EditarDesafioComponent implements OnInit {
 
-  desafio: Desafio = {};
+  @Input() desafio: Desafio = {};
   emitirConfirmacao = new EventEmitter();
 
   constructor(private ngbActiveModal: NgbActiveModal, private desafiosService: DesafiosService, private alertaService: AlertaService) {

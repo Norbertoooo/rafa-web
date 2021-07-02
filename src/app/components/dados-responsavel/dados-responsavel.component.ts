@@ -3,6 +3,7 @@ import {Responsavel} from '../../models/responsavel.model';
 import {ResponsavelService} from '../../shared/services/responsavel.service';
 import {AlertaService} from '../../shared/services/alerta.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {EnderecoUtils} from '../../shared/utils/enderecoUtils';
 
 @Component({
   selector: 'app-dados-responsavel',
@@ -16,6 +17,7 @@ export class DadosResponsavelComponent implements OnInit {
   responsavel: Responsavel = {};
   dataNascimento;
   nomeSpinner = 'dadosResponsavelSpinner';
+  estados = [];
 
   constructor(private responsavelService: ResponsavelService,
               private alertaService: AlertaService,
@@ -23,6 +25,11 @@ export class DadosResponsavelComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.estados = EnderecoUtils.obterEstados();
+    this.obterDadosResponsavel();
+  }
+
+  obterDadosResponsavel(): void {
     this.responsavelService.buscarDadosResponsavel().subscribe((resposta) => {
       this.responsavel = resposta;
       this.dataNascimento = this.formatarStringDataPadraoUSA();
@@ -32,10 +39,11 @@ export class DadosResponsavelComponent implements OnInit {
   }
 
   editarResponsavel(): void {
+    this.obterDadosResponsavel();
     this.estaBloqueado === true ? this.estaBloqueado = false : this.estaBloqueado = true;
   }
 
-  salvarAlteracoes(): void{
+  salvarAlteracoes(): void {
     this.mostrarSpinner();
     this.responsavel.dataNascimento = this.formatarStringDataPadraoBR(this.dataNascimento);
     this.responsavelService.atualizarResponsavel(this.responsavel).subscribe(resposta => {
@@ -43,6 +51,10 @@ export class DadosResponsavelComponent implements OnInit {
       this.dataNascimento = this.formatarStringDataPadraoUSA();
       this.estaBloqueado = true;
       this.alertaService.exibirSucesso('Informações alteradas com sucesso!');
+      this.esconderSpinner();
+    }, error => {
+      this.alertaService.exibirErro(error);
+      this.obterDadosResponsavel();
       this.esconderSpinner();
     });
   }

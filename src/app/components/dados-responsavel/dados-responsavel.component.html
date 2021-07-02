@@ -17,15 +17,6 @@
           <fa-icon *ngIf="isCollapsed" icon="eye"></fa-icon>
           <fa-icon *ngIf="!isCollapsed" icon="eye-slash"></fa-icon>
         </button>
-        <button type=submit class="btn btn-primary mr-3" (click)="editarResponsavel()">
-          <fa-icon icon="edit" class="mr-2"></fa-icon>
-          <span>Editar Informações</span>
-        </button>
-        <button [disabled]="responsavelForm.form.pristine" type=submit class="btn btn-primary"
-                (click)="salvarAlteracoes(); responsavelForm.form.reset()">
-          <fa-icon icon="save" class="mr-2"></fa-icon>
-          <span>Salvar Alterações</span>
-        </button>
       </div>
 
     </div>
@@ -33,6 +24,19 @@
 
   <div class="card" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
     <div class="card-body" >
+      <div class="row">
+        <div class="col text-right mb-4">
+          <button type=submit class="btn btn-primary mr-3" (click)="editarResponsavel()">
+            <fa-icon icon="edit" class="mr-2"></fa-icon>
+            <span>Editar Informações</span>
+          </button>
+          <button [disabled]="responsavelForm.form.pristine" type=submit class="btn btn-primary"
+                  (click)="salvarAlteracoes(); responsavelForm.form.reset()">
+            <fa-icon icon="save" class="mr-2"></fa-icon>
+            <span>Salvar Alterações</span>
+          </button>
+        </div>
+      </div>
       <form class="form-group" id="responsavel" #responsavelForm="ngForm">
 
         <div class="row">
@@ -189,8 +193,10 @@
                   <fa-icon ngbPopover="Estado" triggers="mouseenter:mouseleave" icon="map"></fa-icon>
                 </div>
               </div>
-              <input type="text" class="form-control" aria-label="estado" name="estado"
-                     [readOnly]="estaBloqueado" [(ngModel)]="responsavel.endereco.estado">
+              <select [disabled]="estaBloqueado" id="estado" class="form-control" name="estado" [(ngModel)]="responsavel.endereco.estado">
+                <option value="">Selecione o estado</option>
+                <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
+              </select>
             </div>
           </div>
 
