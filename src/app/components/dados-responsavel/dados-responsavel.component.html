@@ -30,7 +30,7 @@
             <fa-icon icon="edit" class="mr-2"></fa-icon>
             <span>Editar Informações</span>
           </button>
-          <button [disabled]="responsavelForm.form.pristine" type=submit class="btn btn-primary"
+          <button *ngIf="!estaBloqueado" [disabled]="responsavelForm.form.pristine" type=submit class="btn btn-primary"
                   (click)="salvarAlteracoes(); responsavelForm.form.reset()">
             <fa-icon icon="save" class="mr-2"></fa-icon>
             <span>Salvar Alterações</span>
