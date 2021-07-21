@@ -37,7 +37,6 @@ export class DadosTerapeutaComponent implements OnInit {
     this.terapeutaService.buscarDadosTerapeuta().subscribe(resposta => {
       this.terapeuta = resposta;
       this.dataNascimento = this.formatarStringDataPadraoUSA();
-      console.log(this.dataNascimento);
     });
   }
 
